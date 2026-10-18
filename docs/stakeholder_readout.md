@@ -25,7 +25,7 @@ The image above is a static preview; clicking it opens the live Streamlit dashbo
 
 All 120 synthetic records have saved, schema-valid classifications, and the supporting excerpts match their source comments. In this intentionally constructed sample, 20 survey records have separate synthetic ratings: average CSAT is **3.8/5**, top-two-box is **65%**, and NPS is **+20**. These values demonstrate dashboard calculations; they are not observed customer satisfaction or business performance.
 
-Five records currently have labels in the review worksheet. The small pilot comparison reports sentiment accuracy **80%** and macro-F1 **0.381**, and category accuracy **100%** and macro-F1 **0.200**. Only two sentiment classes and two of ten categories are represented. These metrics are descriptive of five reviewed rows only and must not be generalized to model quality.
+All 30 sampled records have sentiment and category labels. Against the initial blind labels, sentiment agreement is **80% accuracy** with **0.407 macro-F1** (three of four sentiment classes represented), and category agreement is **83.3% accuracy** with **0.844 macro-F1** (all ten categories represented). The comparison produced 11 disagreements: six sentiment and five category. All five category disagreements were human `Onboarding` versus Gemini `Documentation` for comments about a setup guide. During post-review, the reviewer judged Gemini's label more appropriate in all 11 cases; these judgments are recorded without replacing the original blind labels. Because this was a single-reviewer assessment made after seeing model output, it should be treated as qualitative adjudication rather than an independent accuracy estimate.
 
 ## Interpretation and limits
 

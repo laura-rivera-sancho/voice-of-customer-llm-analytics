@@ -45,7 +45,7 @@ flowchart LR
 
 The pipeline uses small Python modules and files rather than a database, agent framework, or retrieval system. The dashboard works immediately from the saved CSV and can display classifications after the optional API pipeline has run.
 
-See the [roadmap](ROADMAP.md) for the current completion gates. This project intentionally does not claim a validated business case: the source records are synthetic and only five cases currently have human labels.
+See the [roadmap](ROADMAP.md) for the current completion gates. This project intentionally does not claim a validated business case: the source records are synthetic, and the completed 30-record review is a workflow demonstration rather than a representative production evaluation.
 
 ## Technology stack
 
@@ -66,7 +66,7 @@ The design is deliberately lightweight: local files and resumable checkpoints ke
 |---|---|---|
 | Synthetic data and offline dashboard | Complete | Deterministic fictional data and an API-independent dashboard |
 | Gemini classification pipeline | Complete | Structured output, evidence checks, resumable cache, and usage logging; 120/120 saved records validate |
-| Human-review workflow | Implemented; pilot only | Blind worksheet and scoring exist; five labeled cases are not sufficient for quality claims |
+| Human-review workflow | Complete for synthetic demo | All 30 sampled records have sentiment and category labels; initial blind agreement and post-review notes are documented |
 | Full portfolio case study | Draft; validation pending | Business case and stakeholder readout are documented; representative human evaluation and a real-process baseline are still needed before quality or value claims |
 | Publication packaging | Published; CI passed | Initial `main` commit published on 2026-10-13 with the reviewed 36-file allowlist; a stakeholder readout was added in a follow-up; the Python 3.11–3.13 CI matrix passed; `.env`, per-record caches, and local API-usage logs are excluded |
 
@@ -94,10 +94,10 @@ The usage ledger contains **145 request events** for 117 record IDs: 135 respons
 | Evidence-grounded excerpts | 120 / 120 | Each saved classification includes supporting text found in its source comment |
 | Illustrative CSAT | 3.8 / 5; 65% top-two-box | Synthetic survey output for dashboard demonstration only |
 | Illustrative NPS | +20 | Synthetic result from 20 constructed responses |
-| Pilot sentiment review | 80% accuracy; 0.381 macro-F1 | Preliminary comparison using only five human-labeled cases |
-| Pilot category review | 100% accuracy; 0.200 macro-F1 | Preliminary comparison using only five cases and narrow class coverage |
+| Initial blind sentiment review | 80% accuracy; 0.407 macro-F1 | 30 human-labeled cases; three of four sentiment classes represented |
+| Initial blind category review | 83.3% accuracy; 0.844 macro-F1 | 30 human-labeled cases; all ten categories represented |
 
-These results demonstrate pipeline behavior, validation, and reporting—not production model quality or real customer outcomes. The small human-reviewed sample is intentionally disclosed so the metrics are not overinterpreted.
+These results demonstrate pipeline behavior, validation, and reporting—not production model quality or real customer outcomes. The synthetic sample size, class coverage, and single-reviewer protocol are disclosed so the metrics are not overinterpreted.
 
 ## Quick start
 
@@ -139,7 +139,7 @@ The dashboard summarizes feedback volume, sentiment, themes, monthly volume, seg
 
 ## Evaluation and reliability
 
-The labeling guide is in `data/evaluation/README.md`; the 30-row worksheet is `data/evaluation/human_review_sample.csv`. Its sample is seeded and balanced by source and segment. Survey ratings are omitted from the blind worksheet so they cannot anchor sentiment or category labels. The separate prediction export is `data/evaluation/model_predictions.csv`. Five of the 30 rows currently have human labels for both fields. The resulting pilot comparison scored sentiment at **80% accuracy** and **0.381 macro-F1** (n=5; two classes represented), and category at **100% accuracy** and **0.200 macro-F1** (n=5; two of ten declared classes represented). These are preliminary, highly limited results—not reliable estimates of overall model quality. One disagreement is recorded for `VOC-0117` (human Negative vs. Gemini Mixed). `data/evaluation/codex_ai_category_review.csv` contains a separate fresh comment-based category annotation for all 30 cases; it is not human ground truth. When more human labels are added, run `python -m src.run_evaluation`; it recalculates accuracy, macro-F1, confusion matrices, class support/coverage, and excluded rows, and writes a disagreement file for qualitative review. Macro-F1 averages over the declared label set and assigns zero to classes with no true or predicted examples; report sample size and class coverage with each score.
+The labeling guide is in `data/evaluation/README.md`; the 30-row worksheet is `data/evaluation/human_review_sample.csv`. Its sample is seeded and balanced by source and segment. Survey ratings are omitted from the blind worksheet so they cannot anchor sentiment or category labels. The separate prediction export is `data/evaluation/model_predictions.csv`. All 30 rows have human labels for both fields. Against the initial blind labels, sentiment scored **80% accuracy** and **0.407 macro-F1** (n=30; three of four classes represented), while category scored **83.3% accuracy** and **0.844 macro-F1** (n=30; all ten declared classes represented). The comparison produced 11 disagreements: six sentiment and five category. All five category disagreements were the same boundary case—human `Onboarding` versus Gemini `Documentation` for comments about a setup guide. During post-review, the reviewer judged Gemini's label more appropriate in all 11 disagreements; those judgments are recorded as notes without overwriting the original blind labels. Because that review was performed after seeing the model output and did not use an independent second reviewer, it is qualitative adjudication rather than a new accuracy estimate. `data/evaluation/codex_ai_category_review.csv` remains a separate AI-generated annotation and is not human ground truth. Run `python -m src.run_evaluation` to recalculate the initial-label comparison and refresh the disagreement file. Macro-F1 averages over the declared label set and assigns zero to classes with no true or predicted examples; report sample size and class coverage with each score.
 
 The `supporting_evidence` field is checked against each source comment on ingestion and can be audited in saved outputs with `python -m src.qualitative_review`. Empty evidence means the output lacks a supporting excerpt; a nonmatching excerpt is flagged. Run `python -m src.validate_results` to verify complete coverage and schema-valid outputs without making API calls. Inspect false positives and false negatives by category, sentiment, segment, source, and ambiguous wording before using results operationally. Add a human escalation queue for low-confidence or contradictory cases before production use; the MVP does not ask the model to invent a numeric confidence score.
 
@@ -160,7 +160,7 @@ This is a public portfolio project built exclusively with fictional scenarios, s
 ## Limitations and next steps
 
 - Synthetic, repeated feedback is not representative of real customer language or prevalence.
-- Classification quality has only a five-row-per-field pilot comparison against human labels; the sample is too small and category coverage too narrow to support broad quality claims.
+- Classification quality has a 30-row synthetic comparison, but the sample is still too small and templated for broad quality claims; sentiment has no human-labeled `Positive` examples, and there was no independent second reviewer.
 - The model can still make plausible but incorrect categories or priorities; review evidence and errors before action.
 - Root causes are hypotheses and require product or operational investigation.
 - There is no multi-reviewer agreement analysis, dashboard authentication, persistent action workflow, or external monitoring.
@@ -191,4 +191,4 @@ This project complements the portfolio's [data architecture framework](https://g
 
 ## License and citation
 
-The code is available under the [MIT License](LICENSE). Citation metadata is in [CITATION.cff](CITATION.cff). The repository is published as a portfolio demonstration; see the confidentiality disclaimer and limitations above before reusing the workflow.
+The code is available under the [MIT License](LICENSE). Citation metadata is in [CITATION.cff](CITATION.cff). The reviewed repository is published as a portfolio demonstration, with local credentials and runtime artifacts excluded; see the confidentiality disclaimer and limitations above before reusing the workflow.
