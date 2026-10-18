@@ -1,8 +1,8 @@
-# LLM Systems Framework: Voice of Customer Analytics
+# Voice of Customer LLM Analytics
 
 ![Abstract teal and navy banner showing customer feedback flowing into reviewable insights](assets/repository-banner.png)
 
-[![Repository quality](https://github.com/laura-rivera-sancho/llm-systems-framework/actions/workflows/ci.yml/badge.svg)](https://github.com/laura-rivera-sancho/llm-systems-framework/actions/workflows/ci.yml)
+[![Repository quality](https://github.com/laura-rivera-sancho/voice-of-customer-llm-analytics/actions/workflows/ci.yml/badge.svg)](https://github.com/laura-rivera-sancho/voice-of-customer-llm-analytics/actions/workflows/ci.yml)
 
 [GitHub portfolio](https://github.com/laura-rivera-sancho) · [LinkedIn](https://www.linkedin.com/in/laura-rivera-sancho-970223128/)
 

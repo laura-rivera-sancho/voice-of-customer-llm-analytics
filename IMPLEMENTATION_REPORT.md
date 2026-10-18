@@ -1,6 +1,6 @@
 # Implementation Report
 
-**Project:** LLM Systems Framework — Voice of Customer Analytics
+**Project:** Voice of Customer LLM Analytics
 **Updated:** 2026-10-18
 **Status:** Full synthetic inference and the 30-record human-review demonstration are complete; representative real-world and multi-reviewer validation remain outside the prototype scope.
 

@@ -9,7 +9,7 @@ This roadmap distinguishes implemented workflow components from evidence needed 
 | Blind evaluation workflow | Complete for synthetic demo | All 30 sampled rows have sentiment and category labels. Initial blind agreement, class coverage, and 11 post-reviewed disagreements are documented |
 | Full case study and stakeholder readout | Draft; validation pending | `docs/stakeholder_readout.md` summarizes the prototype and explicit limits. Representative human evaluation and a real-process baseline are still needed before quality or value claims |
 | Public-repository packaging | Published; CI passed | Initial commit `a988fd4` is on `main`, followed by documentation updates; all three Python CI jobs passed, the final credential-pattern scan found no hits, and `.env`, per-record caches, and the local API-usage ledger were excluded |
-| Push project files | Complete | Published to `https://github.com/laura-rivera-sancho/llm-systems-framework` after explicit approval; hosted tests passed on Python 3.11, 3.12, and 3.13 |
+| Push project files | Complete | Published to `https://github.com/laura-rivera-sancho/voice-of-customer-llm-analytics` after explicit approval; hosted tests passed on Python 3.11, 3.12, and 3.13 |
 
 ## Before making quality claims
 
