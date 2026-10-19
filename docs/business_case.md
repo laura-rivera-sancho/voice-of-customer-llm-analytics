@@ -53,4 +53,4 @@ These capabilities demonstrate an end-to-end implementation pattern. They do not
 
 ## Scope statement
 
-This is a synthetic-data portfolio prototype. Its business case is the problem framing and a testable value hypothesis—not a claim that the model has delivered customer, financial, or productivity outcomes. Any future case study should preserve that distinction and add measured results only after a properly governed pilot.
+This is a public reference implementation built with synthetic data. Its business case is the problem framing and a testable value hypothesis—not a claim that the model has delivered customer, financial, or productivity outcomes. Any future case study should preserve that distinction and add measured results only after a properly governed pilot.

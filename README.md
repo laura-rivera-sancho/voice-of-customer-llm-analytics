@@ -8,6 +8,10 @@
 
 A working reference implementation for turning high-volume customer conversations into reviewable themes, evidence-supported issue signals, and prioritized follow-up. It is designed for customer-experience, product, support, and operations teams that need to decide which recurring problems deserve investigation or action.
 
+[![Customer Conversation Intelligence dashboard preview showing synthetic feedback volumes, classifications, and survey measures](assets/dashboard-preview.png)](https://voice-of-customer-llm-analytics.streamlit.app/)
+
+*Synthetic demonstration dashboard—[open the interactive version](https://voice-of-customer-llm-analytics.streamlit.app/) or [review the evidence and limitations](#demonstration-evidence).*
+
 ## The decision this supports
 
 Which customer issues are recurring, where are they concentrated, what evidence supports each signal, and is an assisted review workflow accurate and useful enough to continue?
@@ -98,10 +102,10 @@ The design is deliberately lightweight: local files and resumable checkpoints ke
 
 | Capability | Evidence status | What is available |
 |---|---|---|
-| Synthetic data and offline dashboard | Complete | Deterministic fictional data and an API-independent dashboard |
-| Gemini classification pipeline | Complete | Structured output, evidence checks, resumable cache, and usage logging; 120/120 saved records validate |
-| Human-review workflow | Complete for synthetic demo | All 30 sampled records have sentiment and category labels; initial blind agreement and post-review notes are documented |
-| Full portfolio case study | Draft; validation pending | Business case and stakeholder readout are documented; representative human evaluation and a real-process baseline are still needed before quality or value claims |
+| Synthetic data and offline dashboard | Evidence available | Deterministic fictional data and an API-independent dashboard |
+| Gemini classification pipeline | Evidence available | Structured output, evidence checks, resumable cache, and usage logging; 120/120 saved records validate |
+| Human-review workflow | Synthetic evaluation available | All 30 sampled records have sentiment and category labels; initial blind agreement and post-review notes are documented |
+| Real-data pilot readiness | Validation pending | Business case and stakeholder readout are documented; representative human evaluation and a real-process baseline are still needed before quality or value claims |
 | Publication packaging | Published; CI passed | Initial `main` commit published on 2026-10-13 with the reviewed 36-file allowlist; a stakeholder readout was added in a follow-up; the Python 3.11–3.13 CI matrix passed; `.env`, per-record caches, and local API-usage logs are excluded |
 
 ## Dataset design and limitations
@@ -225,4 +229,4 @@ This project complements the portfolio's [data architecture framework](https://g
 
 ## License and citation
 
-The code is available under the [MIT License](LICENSE). Citation metadata is in [CITATION.cff](CITATION.cff). The reviewed repository is published as a portfolio demonstration, with local credentials and runtime artifacts excluded; see the confidentiality disclaimer and limitations above before reusing the workflow.
+The code is available under the [MIT License](LICENSE). Citation metadata is in [CITATION.cff](CITATION.cff). The reviewed repository is published as a public reference implementation, with local credentials and runtime artifacts excluded; see the confidentiality disclaimer and limitations above before reusing the workflow.
